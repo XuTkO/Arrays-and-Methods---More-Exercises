@@ -14,22 +14,18 @@ public class DemoArray {
                     newText[a] = text[text.length - 1 - a];
                 }
                 text = newText;
-                commands = scanner.nextLine().split(" ");
             } else if (commands[0].equals("Distinct")) {
                 text = Arrays.stream(text).distinct().toArray(String[]::new);
-                commands = scanner.nextLine().split(" ");
             } else if (commands[0].equals("Replace")) {
-                if(Integer.parseInt(commands[1]) > text.length-1){
+                if(Integer.parseInt(commands[1]) > text.length-1 || Integer.parseInt(commands[1]) < 0 ){
                     System.out.println("Invalid input!");
-                    commands = scanner.nextLine().split(" ");
-                } else if (Integer.parseInt(commands[1]) < 0 ){
-                    System.out.println("Invalid input!");
-                    commands = scanner.nextLine().split(" ");
                 } else {
                     text[Integer.parseInt(commands[1])] = commands[2];
-                    commands = scanner.nextLine().split(" ");
                 }
+            } else {
+                System.out.println("Invalid input!");
             }
+            commands = scanner.nextLine().split(" ");
         }
 
         for (int b = 0; b < text.length; b++) {
