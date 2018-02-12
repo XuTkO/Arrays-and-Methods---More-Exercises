@@ -7,7 +7,7 @@ public class DemoArray {
         String[] text = scanner.nextLine().split(" ");
         String[] commands =scanner.nextLine().split(" ");
 
-        while (commands[0]!="END"){
+        while (!commands[0].equals("END")){
             if (commands[0].equals("Reverse")) {
                 String[] newText = new String[text.length];
                 for (int a = 0; a < text.length; a++) {
@@ -19,11 +19,11 @@ public class DemoArray {
                 text = Arrays.stream(text).distinct().toArray(String[]::new);
                 commands = scanner.nextLine().split(" ");
             } else if (commands[0].equals("Replace")) {
-                if(Integer.parseInt(commands[1]) > text.length){
-                    System.out.println("Invalid input");
+                if(Integer.parseInt(commands[1]) > text.length-1){
+                    System.out.println("Invalid input!");
                     commands = scanner.nextLine().split(" ");
                 } else if (Integer.parseInt(commands[1]) < 0 ){
-                    System.out.println("Invalid input");
+                    System.out.println("Invalid input!");
                     commands = scanner.nextLine().split(" ");
                 } else {
                     text[Integer.parseInt(commands[1])] = commands[2];
