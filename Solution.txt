@@ -11,23 +11,25 @@ public class Array {
                 .toArray();
 
         int numberToSearch = Integer.parseInt(scanner.nextLine());
-        int counter = 0;
+        int index = getLastIndex(numbers, numberToSearch);
         long sum = 0;
 
-        for (int i = 0; i < numbers.length; i++){
-            if(numbers[i] == numberToSearch){
-                counter++;
-            }
-            if(counter==2){
-                break;
-            }
+        for (int i = 0; i < index; i++){
             sum+=numbers[i];
-
         }
-        if(counter==0){
+        if(index==-1){
             System.out.println("No occurrences were found!");
-        } else {
+        } else
             System.out.println(sum);
+    }
+
+    static int getLastIndex(int[] numbers, int numberToSearch) {
+        int index = -1;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] == numberToSearch){
+                index=i;
+            }
         }
+        return index;
     }
 }
