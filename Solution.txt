@@ -6,30 +6,27 @@ public class Array {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        int[] numbers = Arrays.stream(scanner.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
+        String[] ingredients = scanner.nextLine().split(" ");
+        int lenght = Integer.parseInt(scanner.nextLine());
+        String finalString = "";
+        int counter = 0;
 
-        int numberToSearch = Integer.parseInt(scanner.nextLine());
-        int index = getLastIndex(numbers, numberToSearch);
-        long sum = 0;
-
-        for (int i = 0; i < index; i++){
-            sum+=numbers[i];
-        }
-        if(index==-1){
-            System.out.println("No occurrences were found!");
-        } else
-            System.out.println(sum);
-    }
-
-    static int getLastIndex(int[] numbers, int numberToSearch) {
-        int index = -1;
-        for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] == numberToSearch){
-                index=i;
+        for (int i = 0; i < ingredients.length; i++) {
+            char[] ingredientsLenght = ingredients[i].toCharArray();
+            if (ingredientsLenght.length == lenght) {
+                counter++;
+                System.out.println("Adding " + ingredients[i] + ".");
+                if(counter==1) {
+                    finalString += ingredients[i];
+                } else {
+                    finalString+=", " +ingredients[i];
+                }
+                if(counter==10){
+                    break;
+                }
             }
         }
-        return index;
+        System.out.printf("Made pizza with total of %s ingredients.%n", counter);
+        System.out.printf("The ingredients are: %s.", finalString);
     }
 }
