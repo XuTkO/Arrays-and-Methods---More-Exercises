@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class DemoArray {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] text = scanner.nextLine().split(" ");
+        int num = Integer.parseInt(scanner.nextLine());
+        String[] commands;
+
+        for (int i = 0; i < num; i++) {
+            commands = scanner.nextLine().split(" ");
+            if (commands[0].equals("Reverse")) {
+                String[] newText = new String[text.length];
+                for (int a = 0; a < text.length; a++) {
+                    newText[a] = text[text.length - 1 - a];
+                }
+                text = newText;
+            } else if (commands[0].equals("Distinct")) {
+                text = Arrays.stream(text).distinct().toArray(String[]::new);
+            } else if (commands[0].equals("Replace")) {
+                text[Integer.parseInt(commands[1])] = commands[2];
+            }
+        }
+
+        for (int b = 0; b < text.length; b++) {
+            if (b < text.length - 1) {
+                System.out.print(text[b] + ", ");
+            } else {
+                System.out.print(text[b]);
+            }
+
+        }
+    }
+}
