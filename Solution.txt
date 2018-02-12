@@ -5,21 +5,30 @@ public class DemoArray {
         Scanner scanner = new Scanner(System.in);
 
         String[] text = scanner.nextLine().split(" ");
-        int num = Integer.parseInt(scanner.nextLine());
-        String[] commands;
+        String[] commands =scanner.nextLine().split(" ");
 
-        for (int i = 0; i < num; i++) {
-            commands = scanner.nextLine().split(" ");
+        while (commands[0]!="END"){
             if (commands[0].equals("Reverse")) {
                 String[] newText = new String[text.length];
                 for (int a = 0; a < text.length; a++) {
                     newText[a] = text[text.length - 1 - a];
                 }
                 text = newText;
+                commands = scanner.nextLine().split(" ");
             } else if (commands[0].equals("Distinct")) {
                 text = Arrays.stream(text).distinct().toArray(String[]::new);
+                commands = scanner.nextLine().split(" ");
             } else if (commands[0].equals("Replace")) {
-                text[Integer.parseInt(commands[1])] = commands[2];
+                if(Integer.parseInt(commands[1]) > text.length){
+                    System.out.println("Invalid input");
+                    commands = scanner.nextLine().split(" ");
+                } else if (Integer.parseInt(commands[1]) < 0 ){
+                    System.out.println("Invalid input");
+                    commands = scanner.nextLine().split(" ");
+                } else {
+                    text[Integer.parseInt(commands[1])] = commands[2];
+                    commands = scanner.nextLine().split(" ");
+                }
             }
         }
 
